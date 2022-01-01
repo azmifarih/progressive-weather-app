@@ -18,8 +18,10 @@ node('jnlp-slave') {
         sh "npm run build"
     }
     stage('Build') {
-        echo "3.Build Docker Image Stage"
-        sh "docker build -t azmifarih/weatherapp:${build_tag} ."
+        container(‘docker’){
+            echo "3.Build Docker Image Stage"
+            sh "docker build -t azmifarih/weatherapp:${build_tag} ."
+        }
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
