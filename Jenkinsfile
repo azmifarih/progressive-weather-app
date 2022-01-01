@@ -1,9 +1,3 @@
-podTemplate(
-    name: 'weatherapp-pod',
-    label: 'weatherapp-pod',
-    containers: [
-        containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
-    ],
 node('jnlp-slave') {
     env.NODEJS_HOME = "${tool 'Node'}"
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
