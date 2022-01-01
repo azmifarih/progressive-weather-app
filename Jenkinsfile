@@ -1,3 +1,9 @@
+podTemplate(
+    name: 'weatherapp-pod',
+    label: 'weatherapp-pod',
+    containers: [
+        containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
+    ],
 node('jnlp-slave') {
     env.NODEJS_HOME = "${tool 'Node'}"
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
@@ -18,7 +24,7 @@ node('jnlp-slave') {
         sh "npm run build"
     }
     stage('Build') {
-        container(‘docker’){
+        container('docker'){
             echo "3.Build Docker Image Stage"
             sh "docker build -t azmifarih/weatherapp:${build_tag} ."
         }
